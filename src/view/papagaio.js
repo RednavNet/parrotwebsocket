@@ -1,6 +1,6 @@
 import React from 'react'
 import { Component } from 'react';
-import { View, FlatList, StyleSheet, TextInput } from 'react-native';
+import { View, FlatList, StyleSheet, TextInput, Alert } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import Spinner from 'react-native-loading-spinner-overlay';
 
@@ -33,8 +33,12 @@ export default class PapagaioView extends Component {
     }
 
     _onError = (evt) => {
-        this._writeToScreen(evt.data);
         this.setState({ message: '', isLoading: false });
+
+        setTimeout(() => {
+            Alert.alert('Oops! Houve algum erro tente novamente em alguns instantes');
+          }, 100);
+
     }
 
     _doSend = (message) => {
